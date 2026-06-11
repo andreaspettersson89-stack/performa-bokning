@@ -47,7 +47,7 @@ export default function BookingPublic({ code }) {
       await loadSession()
     } else {
       setConfirmed(data)
-      setSlots(prev => prev.map(s => s.id === data.id ? data : s))
+      setSlots(prev => prev.map(s => s.id === data.id ? { ...s, is_booked: true } : s))
     }
 
     setBooking(null)

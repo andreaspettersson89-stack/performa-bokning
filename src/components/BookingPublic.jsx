@@ -16,10 +16,7 @@ export default function BookingPublic({ code }) {
   async function loadSession() {
     setLoading(true)
     const { data: sessionData } = await supabase
-      .from('booking_sessions')
-      .select('*')
-      .eq('access_code', code.toUpperCase())
-      .eq('is_active', true)
+      .rpc('get_booking_session', { p_code: code.toUpperCase() })
       .maybeSingle()
 
     if (!sessionData) {

@@ -39,11 +39,7 @@ export default function BookingPublic({ code }) {
     setSaving(true)
 
     const { data, error: err } = await supabase
-      .from('booking_slots')
-      .update({ booked_by_name: name.trim(), booked_at: new Date().toISOString() })
-      .eq('id', booking.id)
-      .is('booked_by_name', null)
-      .select()
+      .rpc('book_slot', { p_slot_id: booking.id, p_name: name.trim() })
       .maybeSingle()
 
     if (err || !data) {

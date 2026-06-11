@@ -28,10 +28,7 @@ export default function BookingPublic({ code }) {
     setSession(sessionData)
 
     const { data: slotsData } = await supabase
-      .from('booking_slots')
-      .select('*')
-      .eq('session_id', sessionData.id)
-      .order('slot_date').order('start_time')
+      .rpc('get_booking_slots', { p_session_id: sessionData.id })
 
     setSlots(slotsData || [])
     setLoading(false)
@@ -68,7 +65,7 @@ export default function BookingPublic({ code }) {
     return acc
   }, {})
 
-  const availableCount = slots.filter(s => !s.booked_by_name).length
+  const availableCount = slots.filter(s => !s.is_booked).length
 
   if (loading) return (
     <p style={{ textAlign: 'center', marginTop: 80, color: '#aaa' }}>Laddar…</p>
@@ -148,7 +145,7 @@ export default function BookingPublic({ code }) {
           <p className="section-label">{formatDate(date)}</p>
           <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
             {daySlots.map((slot, i) => {
-              const isBooked = !!slot.booked_by_name
+              const isBooked = slot.is_booked
               const isActive = booking?.id === slot.id
               return (
                 <div

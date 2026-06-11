@@ -1,0 +1,274 @@
+/* Performa Rehab — variabler */
+:root {
+  --teal:        #0A9CA6;
+  --teal-dark:   #08808a;
+  --teal-light:  #C0DBDE;
+  --teal-pale:   #eaf6f7;
+  --charcoal:    #4D4C44;
+  --sand:        #DEDBC3;
+  --off-white:   #F5F4ED;
+  --border:      #e6e3d8;
+  --orange:      #D2611C;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--off-white);
+  color: var(--charcoal);
+  min-height: 100vh;
+}
+
+#root {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 28px 16px 48px;
+}
+
+/* ── Logo ── */
+.app-logo {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  margin-bottom: 24px;
+  user-select: none;
+}
+.app-logo-performa {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 1.65rem;
+  letter-spacing: -0.5px;
+  color: var(--teal);
+  line-height: 1;
+}
+.app-logo-rehab {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.62rem;
+  letter-spacing: 0.32em;
+  color: var(--charcoal);
+  margin-left: 3px;
+  margin-bottom: 3px;
+  opacity: 0.7;
+  line-height: 1;
+}
+
+/* ── Tabs ── */
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: white;
+  color: var(--charcoal);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.tab-btn.active {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: white;
+  font-weight: 600;
+}
+
+/* ── Cards ── */
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 14px;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+.card-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--charcoal);
+}
+.card-meta {
+  font-size: 0.78rem;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* ── Sections ── */
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 8px;
+  margin-top: 20px;
+}
+.section-label:first-child { margin-top: 0; }
+
+/* ── Form ── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.field label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #777;
+  letter-spacing: 0.04em;
+}
+.field input,
+.field textarea,
+.field select {
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  color: var(--charcoal);
+  background: white;
+  transition: border-color 0.15s;
+  resize: vertical;
+}
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  background: var(--teal);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-primary:hover { background: var(--teal-dark); }
+.btn-primary:disabled { opacity: 0.5; cursor: default; }
+
+.btn-secondary {
+  background: white;
+  color: var(--charcoal);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
+
+.btn-text {
+  background: none;
+  border: none;
+  color: var(--teal);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+
+/* ── Tasks ── */
+.task-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.task-row:last-child { border-bottom: none; }
+.task-row input[type="checkbox"] {
+  accent-color: var(--teal);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.task-row.done .task-title {
+  text-decoration: line-through;
+  color: #aaa;
+}
+.task-title { flex: 1; font-size: 0.9rem; }
+.task-assignee {
+  font-size: 0.75rem;
+  color: #888;
+  background: var(--teal-pale);
+  border-radius: 10px;
+  padding: 2px 8px;
+}
+.task-carry {
+  font-size: 0.75rem;
+  color: var(--orange);
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+/* ── Status badges ── */
+.badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 9px;
+  border-radius: 10px;
+}
+.badge-open    { background: #fff3e0; color: var(--orange); }
+.badge-done    { background: #e8f5e9; color: #388e3c; }
+.badge-pending { background: var(--teal-pale); color: var(--teal-dark); }
+
+/* ── Divider ── */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 20px 0;
+}
+
+/* ── Empty state ── */
+.empty {
+  text-align: center;
+  color: #b0ada4;
+  font-size: 0.9rem;
+  padding: 32px 0;
+}
+
+/* ── Page title ── */
+.page-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin-bottom: 16px;
+}
+
+/* ── Meeting cancelled banner ── */
+.banner-cancelled {
+  background: #fff3e0;
+  border: 1px solid #ffe0b2;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.82rem;
+  color: var(--orange);
+  margin-bottom: 12px;
+}
+
+/* ── Carried forward indicator ── */
+.carried-tag {
+  font-size: 0.7rem;
+  color: #999;
+  font-style: italic;
+}

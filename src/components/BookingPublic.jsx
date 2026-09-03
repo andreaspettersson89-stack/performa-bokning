@@ -70,8 +70,8 @@ export default function BookingPublic({ code }) {
   if (error) return (
     <div style={{ textAlign: 'center', marginTop: 80, padding: '0 24px' }}>
       <div className="app-logo" style={{ justifyContent: 'center' }}>
-        <span className="app-logo-performa">PERFORMA</span>
-        <span className="app-logo-rehab">BOKNING</span>
+        <span className="app-logo-performa" translate="no">PERFORMA</span>
+        <span className="app-logo-rehab" translate="no">BOKNING</span>
       </div>
       <p style={{ color: '#e57373', marginTop: 32 }}>{error}</p>
     </div>
@@ -80,8 +80,8 @@ export default function BookingPublic({ code }) {
   return (
     <div>
       <div className="app-logo">
-        <span className="app-logo-performa">PERFORMA</span>
-        <span className="app-logo-rehab">BOKNING</span>
+        <span className="app-logo-performa" translate="no">PERFORMA</span>
+        <span className="app-logo-rehab" translate="no">BOKNING</span>
       </div>
 
       <p className="page-title">{session.company_name}</p>

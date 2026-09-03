@@ -20,7 +20,7 @@ export default function Login() {
   return (
     <div style={{ maxWidth: 360, margin: '80px auto', padding: '0 16px' }}>
       <div className="app-logo" style={{ justifyContent: 'center', marginBottom: 32 }}>
-        <span className="app-logo-performa">PERFORMA</span>
+        <span className="app-logo-performa" translate="no">PERFORMA</span>
         <span className="app-logo-rehab">MÖTEN</span>
       </div>
       <form className="card" onSubmit={signIn}>

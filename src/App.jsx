@@ -28,8 +28,8 @@ export default function App() {
   return (
     <>
       <div className="app-logo">
-        <span className="app-logo-performa">PERFORMA</span>
-        <span className="app-logo-rehab">BOKNING</span>
+        <span className="app-logo-performa" translate="no">PERFORMA</span>
+        <span className="app-logo-rehab" translate="no">BOKNING</span>
       </div>
 
       <BookingAdmin />

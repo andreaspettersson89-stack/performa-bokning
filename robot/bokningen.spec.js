@@ -113,4 +113,18 @@ test.describe('inloggad som testkontot', () => {
     await expect(page.getByText('+ Nytt uppdrag')).toBeVisible()
     await expect(page.getByText('Inga uppdrag skapade än')).toBeVisible()
   })
+
+  test('6. Logga ut loggar bara ut den här skärmen', async ({ page }) => {
+    // Roboten svarar själv på utloggningen, så att testkontots inloggning finns kvar för
+    // de andra testerna. Kontrollen: appen ber bara om att logga ut den här skärmen.
+    const utloggningar = []
+    await page.route('**/auth/v1/logout*', route => {
+      utloggningar.push(new URL(route.request().url()).searchParams.get('scope') || 'utan scope')
+      return route.fulfill({ status: 204, body: '' })
+    })
+    await page.goto('/')
+    await page.getByRole('button', { name: 'Logga ut', exact: true }).click()
+    await expect(page.getByRole('button', { name: 'Logga in' })).toBeVisible()
+    expect(utloggningar, 'utloggningen ska vara scope=local').toEqual(['local'])
+  })
 })

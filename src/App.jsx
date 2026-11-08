@@ -35,7 +35,9 @@ export default function App() {
       <BookingAdmin />
 
       <button
-        onClick={() => supabase.auth.signOut()}
+        // Bara den här skärmen (sedan 8/11). Apparna delar inloggning, så en global utloggning
+        // loggade ut personen ur alla appar på alla enheter.
+        onClick={() => supabase.auth.signOut({ scope: 'local' })}
         style={{ display: 'block', margin: '32px auto 0', background: 'none', border: 'none', color: '#c0bdb5', cursor: 'pointer', fontSize: 12, letterSpacing: '0.04em' }}
       >
         Logga ut

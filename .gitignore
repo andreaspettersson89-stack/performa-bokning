@@ -1,3 +1,8 @@
 node_modules
 dist
 .env
+
+# Roboten
+robot/.inloggning.json
+test-results/
+playwright-report/

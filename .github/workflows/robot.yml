@@ -1,0 +1,48 @@
+# Roboten: kör webbläsartesterna på varje pull request mot main.
+# Bygger bokningsappen, startar den i GitHubs dator och kontrollerar den som testkontot.
+# Inget sparas i databasen (se robot/bokningen.spec.js), inget deployas härifrån.
+name: Roboten
+
+on:
+  pull_request:
+    branches: [main]
+  # Skyddsnät: på Macen pushas rakt till main, så roboten kör även efteråt där.
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: robot-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  robot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Kör roboten
+        run: npm run robot
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          ROBOT_EPOST: ${{ secrets.ROBOT_EPOST }}
+          ROBOT_LOSENORD: ${{ secrets.ROBOT_LOSENORD }}
+      - name: Spara rapporten om något blev rött
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: robotens-rapport
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
